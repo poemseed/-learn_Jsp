@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member"> <!-- 쿼리문만 모아놓는 곳 -->
+	<!-- 아이디체크 -->
+	<select id="checkId" parameterType="string" resultType="_int">
+		SELECT count(*) FROM TBL_MEMBER WHERE USERID = #{userid}
+	</select>
+	
+	<!-- "SELECT count(*) FROM TBL_MEMBER WHERE USERID = ?" -->
+	
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="com.koreait.beans.MemberBean">
+		INSERT INTO TBL_MEMBER VALUES (#{userid}, #{userpw}, #{username}, #{usergender}, #{userphone})
+	</insert>
+	
+	<!-- "INSERT INTO TBL_MEMBER VALUES ( ?, ?, ?, ?, ?)" -->
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="hashmap" resultType="com.koreait.beans.MemberBean">
+		SELECT * FROM TBL_MEMBER WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</select>
+	
+	<!-- "SELECT * FROM TBL_MEMBER WHERE USERID = ? AND USERPW = ?" -->
+	
+	<!-- 아이디로 정보찾기  -->
+	<select id="userSearch" parameterType="string" resultType="com.koreait.beans.MemberBean">
+		SELECT * FROM TBL_MEMBER WHERE USERID = #{userid}
+	</select>
+	
+	<!-- 전체회원정보 -->
+	<select id="userAll" resultType="com.koreait.beans.MemberBean">
+		SELECT * FROM TBL_MEMBER
+	</select>
+</mapper>

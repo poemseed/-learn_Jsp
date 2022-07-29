@@ -1,0 +1,12 @@
+1655385943791	Rename package 'com.koreait.app.user.mybatis'
+1655385958540	Rename package 'com.koreait.app.user.sql'
+1655385970017	Rename package 'com.koreait.filter'
+1655386050613	Rename resource 'user.xml'
+1655386099742	Rename type 'UserCharacterEncodingFilter'
+1655386192576	Rename package 'com.nngame.app.board.mybatis'
+1655386206821	Rename package 'com.nngame.app.board.sql'
+1655386305696	Rename type 'UserFrontController'
+1655386324716	Delete element
+1655386367253	Rename package 'com.nngame.app.mybatis'
+1655386379356	Rename package 'com.nngame.app.sql'
+1655387246733	Delete element

@@ -1,0 +1,56 @@
+1. 디렉티브 태그
+	- <%@ include file="파일명" %>
+	- 현재 JSP페이지의 특정 영역에 외부 파일의 내용을 포함시키는 태그이다.
+	- 보통 header와 footer 대부분의 페이지에 동일한 내용으로 작성되기 때문에 유지 보수 및 편의를 위하여 외부 파일로 만든 후 include하여 사용한다.
+	- 이러한 것들을 모듈화라고 한다.
+
+2. 액션태그 - 행위에 대한 태그
+	- jsp 페이지에서 동일한 내용이라도 자바 코드를 기술하기 보다는 태그를 기술하는 것이 지저분하지 않고 깔끔하게 코딩할 수 있어, 가독성 높은 소
+	스코드를 작성할 수 있다. 또한 코드 양을 대폭 줄일 수 있다.
+	- 페이지와 페이지 사이를 제어하거나 다른 페이지의 실행 결과 내용을 현재 페이지에 포함하거나 자바빈즈(객체) 등의 다양한 기능을 제공한다.
+	- 액션 태그는 XML문법을 따른다. 즉 시작 태그와 함께 반드시 종료 태그를 포함해야 한다.
+	- 액션 태그의 기본 형식	: <jsp: 속성="값"> 내용 <jsp: 속성="값">
+	- 내용이 없는 액션 태그의 형식 : <jsp: 속성="값" />
+
+ 2-1. 액션태그 종류
+	- forward(<<jsp: forward .../>)
+		-> 다른 페이지로의 이동, 페이지 흐름 제어
+	- include(<jsp:include .../>)
+		-> 외부 페이지의 내용을 포함하거나 페이지 모듈화
+	- param(<jsp:param .../>)
+		-> 현재 페이지에서 다른 페이지에 대한 정보를 전달할 때 사용
+	- useBean(<jsp:useBean .../>)
+		-> 빈(Bean)을 생성하고 사용하기 위한 환경을 정의하는 액션 태그
+	- setProperty(<jsp:setProperty .../>)
+		-> 빈에서 속성 값을 할당
+	- getProperty(<jsp:getProperty .../>)
+		-> 빈에서 속성값을 얻어올 때 사용
+
+3. 페이지 이동
+ 3-1. forward
+	- request에 담긴 값이 유효하다.(request, response 유지된다)
+	- 이동된 url이 화면에 안보인다.(사용자는 이동했는지 알 수 없음)
+	- forward 하는 방식
+		-> <jsp:forward page="이동할 페이지" />	(액션태그 사용)
+		-> pageContext.forward("이동할 페이지");	(내장객체 사용)
+
+ 3-2. redirect
+	- 클라이언트가 새로 페이지를 요청한 것과 같은 방식으로 페이지가 이동된다.(request, response가 유지되지 않는다, 새로 만들어진다.)
+	- 이동된 url이 화면에 보인다.
+		-> response.sendRedirect("이동할 페이지");
+
+4. attribute scope
+	- page		: 페이지 내에서 지역변수처럼 사용
+	- request	: http 요청을  was가 받아서 웹브라우저에게 응답할 때까지 변수가 유지되는 경우 사용
+	- session	: 웹 브라우저 별로 변수가 관리되는 경우 사용
+	- application	: 웹 어플리케이션이 시작되고 종료될 때까지 변수가 유지되는 경우 사용
+
+ 4-1. 메서드 정의
+	- setAttribute(String name, object value);
+		-> 이름이 name인 속성의 값을 value로 지정한다.
+	- getAttribute( String name);
+		-> 이름이 name인 속성의 값을 구한다. 존재하지 않을 경우 null을 반환한다.
+	- removeAttribute(String name);
+		-> 이름이 name인 속성을 삭제한다.
+
+

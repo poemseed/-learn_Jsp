@@ -1,0 +1,11 @@
+1. 경로
+	- ${pageContext.request.contextPath}	: 내 현재 위치(프로젝트 위치)
+	<img src="${pageContext.request.contextPath}/resource/img/cat.png" />
+
+	- http://localhost:9090/project01/abc.jsp
+	- ${pageContext.request.requestURL}	: http://localhost:9090/project01/abc.jsp 이모든 걸 가져오는 소스
+	- ${pageContext.request.scheme}		: http
+	- ${pageContext.request.serverName}	: localhost
+	- ${pageContext.request.serverPort}	: 9090
+	- ${pageContext.request.requestURI}	: /project01/abc.jsp
+	- ${pageContext.request.servletPath	: /abc.jsp

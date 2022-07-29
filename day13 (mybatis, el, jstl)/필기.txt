@@ -1,0 +1,69 @@
+1. MyBatis
+	- <select>
+		-> 성공	: select문에 해당하는 결과 return
+		-> 실패	: error
+
+	- <insert>
+		-> 성공	: 1
+		-> 실패	: error
+
+	- <delete>
+		-> 성공	: delete된 행의 개수 반환(없으면 0)
+		-> 실패	: 0
+
+	- <update>
+		-> 성공	: update된 행의 개수 반환(없으면 0)
+		-> 실패	: error
+
+2. EL
+ 2-1. EL(Expression Language)
+	- 값을 간결하고 간편하게 출력할 수 있도록 해주는 언어
+	- <%= %>, out.println()과 같은 자바코드를 더이상 사용하지 않고 좀 더 간편하게 출력을 지원하기 위한 도구
+
+ 2-2. EL구문
+	- ${...} 내에 포현식으로 표현한다.
+
+ 2-3. 범위
+	- page > request > session > application
+	- 값을 찾을때는 attribute는 작은 범위에서 큰 범위로 찾는다.
+
+ 2-4. EL연산자
+	- 산술연산자		: +, -, *, /(div), %(mod)
+	- 논리연산자		: &&(and), ||(or), !(not)
+	- 비교연산자		: ==(eq), !=(ne), <(lt), >(gt), <=(le), >=(ge)
+	- empty 연산자	: 값이 null이거나 공백문자인지를 판단하는 연산자
+				${empty ""}		-> true
+				${empty null}		-> true
+				${empty data}	-> data값이 없으면 true
+	- 조건연산자		: a ? b : c
+				a조건이 만족하면 b를 리턴하고, 만족하지 않으면 c를 리턴
+
+3. JSTL
+ 3-1. JSTL(JSP Standard Tag Library)
+	- 연산이나 조건문, 반복문을 편하게 처리할 수 있으며 JSP페이지 내에서 자바코드를 사용하지 않고도 로직을 구현할 수 있도록 효율적인 방법을
+	제공한다.
+	- for( 초기식; 조건식; 증감식 ){ }	->	<c:forEach></c:forEach>
+
+** 라이브러리 다운로드
+http://archive.apache.org/dist/jakarta/taglibs/standard/binaries/ ->  jakarta-taglibs-standard-1.1.2.zip  다운로드 -> 라이브러리에 추가 -> blidpath ->
+페이지상단에 JSTL을 사용하겠다는 태그라이브러리 선언문 작성 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+ 3-2. 태그
+	- <c:set />
+		: 변수를 만들때 사용
+	- <c:out></c:out>
+		: 값을 출력(EL문을 좀 더 많이 쓴다)
+	- <c:if></c:if>
+		: 조건 제어
+	- <c:choose></c:choose>
+		: 조건 제어( switch문)
+		: 내부에 c:when, c:otherwise만 있어야 한다.
+	- <c:when></c:when>
+		: 조건 제어(case문)
+	- <c:otherwise></c:otherwise>
+		: 조건 제어
+	- <c:forEach></c:forEach>
+		: 반복 제어
+
+

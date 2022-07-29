@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+		result is [연산 결과값 입력]
+		덧셈 버튼 클릭 -> 덧셈 연산 결과
+		뺄셈 버튼 클릭 -> 뺄셈 연산 결과
+		이 결과값을 출력하는 servlet을 작성
+	 -->
+	<form action="calc" method="post">
+		<div>
+			<label>x : </label>
+			<input type="text" name="x">
+		</div>
+		<div>
+			<label>y : </label>
+			<input type="text" name="y">
+		</div>
+		<input type="submit" name="operator" value="덧셈">
+		<input type="submit" name="operator" value="뺄셈" >
+	</form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board"> <!-- 쿼리문만 모아놓는 곳 -->
+	<!-- 글전체 목록 가져오기 + 페이징을 위한 시작과 끝목록가져오기 -->
+	<select id="getBoardList" resultType="boarddto" parameterType="hashmap">
+<!-- 		SELECT * FROM tbl_board ORDER BY BOARDNUM DESC -->
+		SELECT *
+		FROM (SELECT 	rownum R, D.*
+				FROM 	(SELECT * FROM TBL_BOARD ORDER BY BOARDNUM DESC) D) B
+		WHERE 	B.R BETWEEN #{startRow}	AND #{endRow}
+	</select>
+	<!-- 글전체 수 가져오기 -->
+	<select id="getBoardCnt" resultType="_int">
+		SELECT count(*) FROM TBL_BOARD
+	</select>
+	<!-- 글작성 -->
+	<insert id="insertBoard" parameterType="boarddto" >
+		INSERT INTO TBL_BOARD VALUES (board_seq.nextval, #{boardtitle}, #{boardcontent}, #{username}, sysdate, 0)
+	</insert>
+	<!-- 글확인하기 -->
+	<select id="getDetail" parameterType="_int" resultType="boarddto">
+		SELECT * FROM TBL_BOARD WHERE BOARDNUM = #{boardnum}
+	</select>
+	<!-- 조회수update하기 -->
+	<update id="updateReadCount" parameterType="_int">
+		UPDATE 	TBL_BOARD SET BOARDREADCOUNT = BOARDREADCOUNT + 1 WHERE 	BOARDNUM = #{boardnum}
+	</update>
+	<!-- 글쓰기 후 글상세보여주기 -->
+	<select id="getSeq" resultType="_int">
+		SELECT board_seq.currval FROM dual
+	</select>
+	<!-- 댓글쓰기 -->
+	<insert id="addReply" parameterType="replydto">
+		INSERT INTO TBL_REPLY VALUES (reply_seq.nextval, #{replycontents}, #{username}, #{password}, #{boardnum})
+	</insert>
+	<!-- 댓글가져오기 -->
+	<select id="getReplys" parameterType="_int" resultType="replydto">
+		SELECT * FROM TBL_REPLY  WHERE BOARDNUM = #{boardnum}
+	</select>
+	<!-- 댓글삭제하기 -->
+	<delete id="deleteReply" parameterType="_int">
+		DELETE from TBL_REPLY WHERE replynum = #{replynum}
+	</delete>
+	<!-- 댓글 수정하기 -->
+	<update id="updateReply" parameterType="hashmap">
+		UPDATE 	TBL_REPLY SET REPLYCONTENTS = #{replycontents} WHERE 	REPLYNUM  = #{replynum}
+	</update>
+</mapper>

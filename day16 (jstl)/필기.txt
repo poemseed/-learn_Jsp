@@ -1,0 +1,12 @@
+1. jstl fn
+	- jstl function  사용 선언
+	<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+	- el 표현식과 함께 사용해야함
+
+2. 
+	- 공백		: &nbsp;
+	- 부등호(<)	: &lt;
+	- 부등호(>)	: &amp;
+	- 쌍따옴표(")	: &quot;
+	- 따옴표(')	: &#039;
+	- sharp(#)	: &#035; 
